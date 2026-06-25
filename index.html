@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Picture Brush Coach</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3 Minute Kids Brush Coach</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -13,25 +13,25 @@
       font-family: "Comic Sans MS", "Arial Rounded MT Bold", Arial, sans-serif;
       background: linear-gradient(135deg, #7ee8fa, #f9b5d0, #fff176);
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 10px;
       color: #263238;
     }
 
     .app {
       width: 100%;
-      max-width: 480px;
-      background: rgba(255,255,255,.97);
+      max-width: 500px;
+      background: rgba(255,255,255,.98);
+      border: 5px solid #fff;
       border-radius: 32px;
       padding: 14px;
-      border: 5px solid white;
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      box-shadow: 0 18px 42px rgba(0,0,0,.2);
       text-align: center;
     }
 
     .hero {
-      font-size: 58px;
+      font-size: 56px;
       animation: bounce 1s infinite;
     }
 
@@ -41,8 +41,8 @@
     }
 
     h1 {
-      margin: 3px 0 8px;
-      font-size: 28px;
+      margin: 2px 0 8px;
+      font-size: 27px;
       color: #ff4081;
       text-shadow: 1px 1px 0 #fff176;
     }
@@ -52,7 +52,7 @@
       border: 4px dashed #ff7043;
       border-radius: 25px;
       padding: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     .timer {
@@ -62,17 +62,17 @@
       letter-spacing: 2px;
     }
 
-    .big-emoji {
-      font-size: 46px;
-      min-height: 55px;
+    .emoji-line {
+      font-size: 44px;
+      min-height: 54px;
     }
 
     .stage {
       background: linear-gradient(135deg, #ffffff, #e1f5fe);
       border: 5px solid #81d4fa;
       border-radius: 28px;
+      min-height: 340px;
       padding: 10px;
-      min-height: 315px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -85,50 +85,53 @@
       animation: pop .3s ease;
     }
 
-    .view.show {
-      display: block;
-    }
+    .view.show { display: block; }
 
     @keyframes pop {
       from { transform: scale(.86); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
 
-    .symbol-row {
-      font-size: 42px;
-      margin-bottom: 6px;
-      min-height: 50px;
-    }
-
-    .outside-mouth {
-      width: 315px;
-      height: 210px;
+    .big-mouth {
+      width: 330px;
+      height: 250px;
       margin: 0 auto;
       background: #ff8a80;
-      border: 7px solid #d81b60;
+      border: 8px solid #d81b60;
       border-radius: 52% 52% 45% 45%;
       position: relative;
       overflow: hidden;
-      box-shadow: inset 0 -10px 0 rgba(183,28,28,.15);
+      box-shadow: inset 0 -12px 0 rgba(183,28,28,.15);
     }
 
-    .top-badge,
-    .bottom-badge {
+    .open-mouth {
+      width: 330px;
+      height: 270px;
+      margin: 0 auto;
+      background: #ffab91;
+      border: 8px solid #d84315;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 -12px 0 rgba(183,28,28,.12);
+    }
+
+    .top-badge, .bottom-badge, .side-badge {
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
       background: #fff176;
       color: #6a1b9a;
       font-weight: bold;
-      font-size: 31px;
+      font-size: 28px;
       border-radius: 18px;
-      padding: 2px 16px;
+      padding: 2px 14px;
       border: 4px solid #ff9800;
-      z-index: 5;
+      z-index: 20;
     }
 
-    .top-badge { top: 4px; }
-    .bottom-badge { bottom: 4px; }
+    .top-badge { top: 5px; left: 50%; transform: translateX(-50%); }
+    .bottom-badge { bottom: 5px; left: 50%; transform: translateX(-50%); }
+    .side-badge.left { left: 5px; top: 46%; transform: translateY(-50%); font-size: 22px; }
+    .side-badge.right { right: 5px; top: 46%; transform: translateY(-50%); font-size: 22px; }
 
     .teeth-row {
       display: flex;
@@ -137,147 +140,142 @@
       position: absolute;
       left: 0;
       right: 0;
+      z-index: 8;
     }
 
-    .top-row { top: 48px; }
-    .bottom-row { bottom: 48px; }
+    .top-row { top: 56px; }
+    .bottom-row { bottom: 56px; }
 
     .tooth {
-      width: 29px;
-      height: 39px;
-      background: white;
+      width: 30px;
+      height: 40px;
+      background: #fff;
       border: 3px solid #90a4ae;
       border-radius: 8px 8px 15px 15px;
       transition: .25s;
     }
 
     .molar {
-      width: 36px;
+      width: 37px;
       border-radius: 14px;
     }
 
-    .active-tooth {
-      background: #fff176;
-      border-color: #ff9800;
-      transform: scale(1.2);
+    .dim { opacity: .35; }
+    .active {
+      background: #fff176 !important;
+      border-color: #ff9800 !important;
       box-shadow: 0 0 18px #ffca28;
-    }
-
-    .dim-tooth {
-      opacity: .45;
+      transform: scale(1.18);
+      opacity: 1 !important;
     }
 
     .brush {
       position: absolute;
-      font-size: 48px;
-      z-index: 10;
-      animation: scrub .7s infinite alternate;
+      font-size: 50px;
+      z-index: 30;
+      animation: scrub .65s infinite alternate;
+      filter: drop-shadow(0 4px 4px rgba(0,0,0,.2));
     }
 
-    .top-brush { top: 75px; left: 92px; }
-    .bottom-brush { bottom: 76px; left: 92px; }
+    .brush.top { top: 90px; left: 92px; }
+    .brush.bottom { bottom: 86px; left: 92px; }
+    .brush.left { top: 105px; left: 35px; }
+    .brush.right { top: 105px; right: 35px; transform: rotate(180deg); }
 
     @keyframes scrub {
-      from { transform: translateX(-42px) rotate(-14deg); }
-      to { transform: translateX(55px) rotate(12deg); }
-    }
-
-    .inside-mouth {
-      width: 315px;
-      height: 240px;
-      margin: 0 auto;
-      background: #ffab91;
-      border: 7px solid #d84315;
-      border-radius: 50%;
-      position: relative;
-      overflow: hidden;
+      from { transform: translateX(-36px) rotate(-15deg); }
+      to { transform: translateX(48px) rotate(13deg); }
     }
 
     .tongue {
       position: absolute;
-      left: 88px;
-      bottom: 28px;
-      width: 130px;
-      height: 85px;
+      left: 90px;
+      bottom: 32px;
+      width: 135px;
+      height: 88px;
       background: #ef5350;
       border-radius: 50%;
       opacity: .9;
+      z-index: 2;
     }
 
     .inside-arc {
-      display: flex;
-      justify-content: center;
-      gap: 5px;
       position: absolute;
       left: 45px;
       right: 45px;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      z-index: 8;
     }
 
-    .inside-arc.top { top: 18px; }
-    .inside-arc.bottom { bottom: 16px; }
+    .inside-arc.top { top: 22px; }
+    .inside-arc.bottom { bottom: 18px; }
 
     .inside-tooth {
-      width: 27px;
-      height: 36px;
+      width: 28px;
+      height: 37px;
       background: white;
       border: 3px solid #90a4ae;
       border-radius: 8px;
+      transition: .25s;
     }
 
-    .inside-tooth.glow {
-      background: #fff176;
-      border-color: #ff9800;
-      box-shadow: 0 0 16px #ffca28;
-      transform: scale(1.1);
-    }
-
-    .inside-arrow {
+    .side-teeth {
       position: absolute;
-      left: 64px;
-      right: 64px;
-      height: 48px;
-      border: 7px dashed #29b6f6;
+      top: 84px;
+      display: grid;
+      gap: 5px;
+      z-index: 8;
+    }
+
+    .side-teeth.left { left: 24px; }
+    .side-teeth.right { right: 24px; }
+
+    .side-tooth {
+      width: 37px;
+      height: 30px;
+      background: white;
+      border: 3px solid #90a4ae;
+      border-radius: 12px;
+      transition: .25s;
+    }
+
+    .touch-circle {
+      position: absolute;
+      width: 92px;
+      height: 92px;
       border-radius: 50%;
-      animation: pulse .75s infinite alternate;
+      border: 8px solid #29b6f6;
+      background: rgba(255,241,118,.35);
+      z-index: 15;
+      animation: tapPulse .7s infinite alternate;
+      pointer-events: none;
     }
 
-    .inside-arrow.top { top: 63px; }
-    .inside-arrow.bottom { bottom: 64px; }
+    .touch-top { top: 58px; left: 118px; }
+    .touch-bottom { bottom: 58px; left: 118px; }
+    .touch-left { top: 88px; left: 15px; }
+    .touch-right { top: 88px; right: 15px; }
 
-    @keyframes pulse {
-      from { transform: scale(.9); opacity: .7; }
-      to { transform: scale(1.08); opacity: 1; }
-    }
-
-    .inside-brush {
-      position: absolute;
-      font-size: 48px;
-      left: 112px;
-      animation: smallScrub .65s infinite alternate;
-      z-index: 10;
-    }
-
-    .inside-brush.top { top: 72px; }
-    .inside-brush.bottom { bottom: 70px; }
-
-    @keyframes smallScrub {
-      from { transform: translateX(-30px) rotate(-12deg); }
-      to { transform: translateX(38px) rotate(14deg); }
+    @keyframes tapPulse {
+      from { transform: scale(.86); opacity: .65; }
+      to { transform: scale(1.1); opacity: 1; }
     }
 
     .chew-map {
-      width: 325px;
+      width: 335px;
       margin: 0 auto;
       background: #e8f5e9;
-      border: 6px solid #43a047;
-      border-radius: 30px;
-      padding: 12px;
+      border: 7px solid #43a047;
+      border-radius: 32px;
+      padding: 10px;
       position: relative;
     }
 
-    .mouth-icon {
-      font-size: 44px;
-      margin-bottom: 4px;
+    .face-icon {
+      font-size: 50px;
+      margin-bottom: 3px;
     }
 
     .chew-grid {
@@ -287,25 +285,25 @@
     }
 
     .corner {
-      min-height: 110px;
+      min-height: 118px;
       background: white;
       border: 5px dashed #ff9800;
-      border-radius: 22px;
+      border-radius: 23px;
       padding: 8px;
       position: relative;
-      opacity: .42;
+      opacity: .35;
       transition: .25s;
     }
 
-    .corner.active {
+    .corner.active-corner {
       opacity: 1;
       background: #fff8e1;
-      transform: scale(1.06);
       box-shadow: 0 0 18px #ffb74d;
+      transform: scale(1.06);
     }
 
     .corner-symbol {
-      font-size: 34px;
+      font-size: 36px;
       line-height: 1;
       margin-bottom: 3px;
     }
@@ -317,15 +315,15 @@
     }
 
     .flat {
-      width: 34px;
-      height: 34px;
+      width: 35px;
+      height: 36px;
       border: 5px solid #ff9800;
       border-radius: 12px;
       background: #fffde7;
       box-shadow: inset 0 -5px 0 #ffe0b2;
     }
 
-    .corner.active .flat {
+    .active-corner .flat {
       background: #fff176;
       box-shadow: 0 0 14px #ffca28;
     }
@@ -334,23 +332,24 @@
       position: absolute;
       bottom: 2px;
       left: 32%;
-      font-size: 39px;
+      font-size: 42px;
       animation: chewScrub .55s infinite alternate;
+      z-index: 9;
     }
 
     @keyframes chewScrub {
-      from { transform: translateX(-14px) rotate(-15deg); }
-      to { transform: translateX(25px) rotate(15deg); }
+      from { transform: translateX(-15px) rotate(-15deg); }
+      to { transform: translateX(27px) rotate(15deg); }
     }
 
     .caption {
       background: #e1f5fe;
       color: #01579b;
       border-radius: 20px;
-      padding: 11px;
-      margin: 10px 0;
-      min-height: 55px;
-      font-size: 20px;
+      padding: 10px;
+      margin: 9px 0;
+      min-height: 54px;
+      font-size: 24px;
       font-weight: bold;
       display: flex;
       align-items: center;
@@ -390,6 +389,7 @@
       font-size: 16px;
       font-weight: bold;
       box-shadow: 0 6px 0 rgba(0,0,0,.18);
+      cursor: pointer;
     }
 
     button:active {
@@ -416,111 +416,151 @@
       color: #33691e;
       padding: 14px;
       border-radius: 22px;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
     }
 
     @media (max-width: 390px) {
-      h1 { font-size: 24px; }
       .timer { font-size: 44px; }
-      .stage { min-height: 295px; }
-      .outside-mouth, .inside-mouth { width: 285px; }
-      .chew-map { width: 288px; }
+      h1 { font-size: 23px; }
+      .stage { min-height: 325px; }
+      .big-mouth, .open-mouth { width: 295px; height: 245px; }
+      .big-mouth { height: 220px; }
+      .chew-map { width: 295px; }
       .tooth { width: 24px; height: 34px; }
       .molar { width: 29px; }
-      .flat { width: 28px; height: 30px; }
-      .caption { font-size: 18px; }
-      .top-badge, .bottom-badge { font-size: 25px; }
+      .inside-tooth { width: 23px; height: 32px; }
+      .side-tooth { width: 31px; height: 26px; }
+      .flat { width: 29px; height: 31px; }
+      .caption { font-size: 21px; }
+      .top-badge, .bottom-badge { font-size: 24px; }
+      .side-badge.left, .side-badge.right { font-size: 18px; }
+      .brush { font-size: 42px; }
+      .touch-circle { width: 78px; height: 78px; }
     }
   </style>
 </head>
 <body>
   <div class="app">
     <div class="hero">🪥😄🦷</div>
-    <h1>Brush Buddy</h1>
+    <h1>3-Minute Brush Buddy</h1>
 
     <div class="timer-card">
-      <div id="timer" class="timer">02:00</div>
-      <div id="bigEmoji" class="big-emoji">👆🦷</div>
+      <div id="timer" class="timer">03:00</div>
+      <div id="emojiLine" class="emoji-line">👆🦷✨</div>
     </div>
 
     <div class="stage">
-      <div id="topView" class="view">
-        <div class="symbol-row">👆🦷🦷🦷</div>
-        <div class="outside-mouth">
+      <div id="outsideTop" class="view">
+        <div class="big-mouth">
           <div class="top-badge">TOP</div>
-          <div class="brush top-brush">🪥</div>
+          <div class="brush top">🪥</div>
           <div class="teeth-row top-row">
-            <div class="tooth molar top-tooth"></div><div class="tooth molar top-tooth"></div>
-            <div class="tooth top-tooth"></div><div class="tooth top-tooth"></div>
-            <div class="tooth molar top-tooth"></div><div class="tooth molar top-tooth"></div>
+            <div class="tooth molar topOutside"></div><div class="tooth molar topOutside"></div>
+            <div class="tooth topOutside"></div><div class="tooth topOutside"></div>
+            <div class="tooth molar topOutside"></div><div class="tooth molar topOutside"></div>
           </div>
           <div class="teeth-row bottom-row">
-            <div class="tooth molar dim-tooth"></div><div class="tooth molar dim-tooth"></div>
-            <div class="tooth dim-tooth"></div><div class="tooth dim-tooth"></div>
-            <div class="tooth molar dim-tooth"></div><div class="tooth molar dim-tooth"></div>
+            <div class="tooth molar dim"></div><div class="tooth molar dim"></div>
+            <div class="tooth dim"></div><div class="tooth dim"></div>
+            <div class="tooth molar dim"></div><div class="tooth molar dim"></div>
           </div>
         </div>
       </div>
 
-      <div id="bottomView" class="view">
-        <div class="symbol-row">👇🦷🦷🦷</div>
-        <div class="outside-mouth">
+      <div id="outsideBottom" class="view">
+        <div class="big-mouth">
           <div class="teeth-row top-row">
-            <div class="tooth molar dim-tooth"></div><div class="tooth molar dim-tooth"></div>
-            <div class="tooth dim-tooth"></div><div class="tooth dim-tooth"></div>
-            <div class="tooth molar dim-tooth"></div><div class="tooth molar dim-tooth"></div>
+            <div class="tooth molar dim"></div><div class="tooth molar dim"></div>
+            <div class="tooth dim"></div><div class="tooth dim"></div>
+            <div class="tooth molar dim"></div><div class="tooth molar dim"></div>
           </div>
           <div class="teeth-row bottom-row">
-            <div class="tooth molar bottom-tooth"></div><div class="tooth molar bottom-tooth"></div>
-            <div class="tooth bottom-tooth"></div><div class="tooth bottom-tooth"></div>
-            <div class="tooth molar bottom-tooth"></div><div class="tooth molar bottom-tooth"></div>
+            <div class="tooth molar bottomOutside"></div><div class="tooth molar bottomOutside"></div>
+            <div class="tooth bottomOutside"></div><div class="tooth bottomOutside"></div>
+            <div class="tooth molar bottomOutside"></div><div class="tooth molar bottomOutside"></div>
           </div>
-          <div class="brush bottom-brush">🪥</div>
+          <div class="brush bottom">🪥</div>
           <div class="bottom-badge">BOTTOM</div>
         </div>
       </div>
 
-      <div id="insideTopView" class="view">
-        <div class="symbol-row">🦁👆✨</div>
-        <div class="inside-mouth">
+      <div id="insideTop" class="view">
+        <div class="open-mouth">
+          <div class="touch-circle touch-top"></div>
           <div class="inside-arc top">
-            <div class="inside-tooth top-inside"></div><div class="inside-tooth top-inside"></div>
-            <div class="inside-tooth top-inside"></div><div class="inside-tooth top-inside"></div>
-            <div class="inside-tooth top-inside"></div>
+            <div class="inside-tooth topInside"></div><div class="inside-tooth topInside"></div>
+            <div class="inside-tooth topInside"></div><div class="inside-tooth topInside"></div>
+            <div class="inside-tooth topInside"></div>
           </div>
-          <div class="inside-arrow top"></div>
-          <div class="inside-brush top">🪥</div>
+          <div class="brush top">🪥</div>
           <div class="tongue"></div>
           <div class="inside-arc bottom">
-            <div class="inside-tooth dim-tooth"></div><div class="inside-tooth dim-tooth"></div>
-            <div class="inside-tooth dim-tooth"></div><div class="inside-tooth dim-tooth"></div>
-            <div class="inside-tooth dim-tooth"></div>
+            <div class="inside-tooth dim"></div><div class="inside-tooth dim"></div>
+            <div class="inside-tooth dim"></div><div class="inside-tooth dim"></div>
+            <div class="inside-tooth dim"></div>
           </div>
         </div>
       </div>
 
-      <div id="insideBottomView" class="view">
-        <div class="symbol-row">🦁👇✨</div>
-        <div class="inside-mouth">
+      <div id="insideBottom" class="view">
+        <div class="open-mouth">
           <div class="inside-arc top">
-            <div class="inside-tooth dim-tooth"></div><div class="inside-tooth dim-tooth"></div>
-            <div class="inside-tooth dim-tooth"></div><div class="inside-tooth dim-tooth"></div>
-            <div class="inside-tooth dim-tooth"></div>
+            <div class="inside-tooth dim"></div><div class="inside-tooth dim"></div>
+            <div class="inside-tooth dim"></div><div class="inside-tooth dim"></div>
+            <div class="inside-tooth dim"></div>
           </div>
           <div class="tongue"></div>
-          <div class="inside-arrow bottom"></div>
-          <div class="inside-brush bottom">🪥</div>
+          <div class="touch-circle touch-bottom"></div>
+          <div class="brush bottom">🪥</div>
           <div class="inside-arc bottom">
-            <div class="inside-tooth bottom-inside"></div><div class="inside-tooth bottom-inside"></div>
-            <div class="inside-tooth bottom-inside"></div><div class="inside-tooth bottom-inside"></div>
-            <div class="inside-tooth bottom-inside"></div>
+            <div class="inside-tooth bottomInside"></div><div class="inside-tooth bottomInside"></div>
+            <div class="inside-tooth bottomInside"></div><div class="inside-tooth bottomInside"></div>
+            <div class="inside-tooth bottomInside"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="insideLeft" class="view">
+        <div class="open-mouth">
+          <div class="side-badge left">LEFT</div>
+          <div class="touch-circle touch-left"></div>
+          <div class="side-teeth left">
+            <div class="side-tooth leftInside"></div>
+            <div class="side-tooth leftInside"></div>
+            <div class="side-tooth leftInside"></div>
+          </div>
+          <div class="brush left">🪥</div>
+          <div class="tongue"></div>
+          <div class="side-teeth right">
+            <div class="side-tooth dim"></div>
+            <div class="side-tooth dim"></div>
+            <div class="side-tooth dim"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="insideRight" class="view">
+        <div class="open-mouth">
+          <div class="side-badge right">RIGHT</div>
+          <div class="touch-circle touch-right"></div>
+          <div class="side-teeth left">
+            <div class="side-tooth dim"></div>
+            <div class="side-tooth dim"></div>
+            <div class="side-tooth dim"></div>
+          </div>
+          <div class="tongue"></div>
+          <div class="brush right">🪥</div>
+          <div class="side-teeth right">
+            <div class="side-tooth rightInside"></div>
+            <div class="side-tooth rightInside"></div>
+            <div class="side-tooth rightInside"></div>
           </div>
         </div>
       </div>
 
       <div id="chewView" class="view">
-        <div class="mouth-icon">😬</div>
+        <div class="face-icon">😬</div>
         <div class="chew-map">
           <div class="chew-grid">
             <div id="top-left" class="corner">
@@ -561,60 +601,71 @@
       <button class="voice" onclick="testVoice()">🔊 Voice</button>
     </div>
 
-    <div class="note">Pictures guide the child. Voice explains everything.</div>
+    <div class="note">Big pictures + touch circle + glowing teeth guide the child.</div>
 
-    <div id="celebrate" class="celebrate">
-      🎉 😁 ⭐ 🦷 ⭐ 😁 🎉
-    </div>
+    <div id="celebrate" class="celebrate">🎉 😁 ⭐ 🦷 ⭐ 😁 🎉</div>
   </div>
 
   <script>
-    const totalTime = 120;
+    const totalTime = 180;
     let timeLeft = totalTime;
     let interval = null;
     let running = false;
     let currentSpeechIndex = -1;
 
     const timerEl = document.getElementById("timer");
-    const bigEmojiEl = document.getElementById("bigEmoji");
+    const emojiLineEl = document.getElementById("emojiLine");
     const captionEl = document.getElementById("caption");
     const progressEl = document.getElementById("progress");
     const celebrateEl = document.getElementById("celebrate");
 
     const views = {
-      top: document.getElementById("topView"),
-      bottom: document.getElementById("bottomView"),
-      insideTop: document.getElementById("insideTopView"),
-      insideBottom: document.getElementById("insideBottomView"),
+      outsideTop: document.getElementById("outsideTop"),
+      outsideBottom: document.getElementById("outsideBottom"),
+      insideTop: document.getElementById("insideTop"),
+      insideBottom: document.getElementById("insideBottom"),
+      insideLeft: document.getElementById("insideLeft"),
+      insideRight: document.getElementById("insideRight"),
       chew: document.getElementById("chewView")
     };
 
     const speechPlan = [
-      { at:120, view:"top", emoji:"👆🦷", caption:"👆🦷✨", text:"Start with the top teeth. Brush the yellow teeth. Tiny circles." },
-      { at:114, view:"top", emoji:"🚂👆", caption:"🚂 ↔️", text:"Chugga chugga toothbrush train on the top teeth." },
-      { at:108, view:"top", emoji:"⬅️➡️", caption:"⬅️🪥➡️", text:"Go side to side. Left and right. Nice and gentle." },
-      { at:102, view:"top", emoji:"⭐👆", caption:"⭐🦷⭐", text:"Top teeth are getting shiny. Keep going, brushing buddy." },
+      { at:180, view:"outsideTop", glow:".topOutside", emoji:"👆🦷✨", caption:"👆🦷", text:"Ready, set, brush! Start with the top teeth. Brush the yellow teeth with tiny circles." },
+      { at:174, view:"outsideTop", glow:".topOutside", emoji:"🚂👆", caption:"🚂↔️", text:"Chugga chugga toothbrush train on the top teeth. Go left and right." },
+      { at:168, view:"outsideTop", glow:".topOutside", emoji:"🫧👆", caption:"🫧🪥", text:"Bubble party on the top teeth. Do not rush the bubbles." },
+      { at:162, view:"outsideTop", glow:".topOutside", emoji:"⭐👆", caption:"⭐🦷⭐", text:"Top teeth are turning shiny like little stars. Keep brushing." },
 
-      { at:96, view:"bottom", emoji:"👇🦷", caption:"👇🦷✨", text:"Now bottom teeth. Brush the yellow bottom teeth." },
-      { at:90, view:"bottom", emoji:"🐢👇", caption:"🐢 slow", text:"Go slow like a turtle. No rushing, only gentle brushing." },
-      { at:84, view:"bottom", emoji:"⬅️➡️", caption:"⬅️🪥➡️", text:"Brush left, middle, and right on the bottom teeth." },
-      { at:78, view:"bottom", emoji:"😄👇", caption:"😁✨", text:"Bottom teeth are smiling. Bye bye sugar bugs." },
+      { at:156, view:"outsideBottom", glow:".bottomOutside", emoji:"👇🦷✨", caption:"👇🦷", text:"Now bottom teeth. Brush the yellow bottom teeth gently." },
+      { at:150, view:"outsideBottom", glow:".bottomOutside", emoji:"🐢👇", caption:"🐢 slow", text:"Slow like a turtle. Small circles, small circles." },
+      { at:144, view:"outsideBottom", glow:".bottomOutside", emoji:"⬅️➡️", caption:"⬅️🪥➡️", text:"Bottom teeth left, middle, right. The brush is doing a funny dance." },
+      { at:138, view:"outsideBottom", glow:".bottomOutside", emoji:"😄👇", caption:"😁✨", text:"Great job. Bottom teeth are smiling. Sugar bugs are packing bags." },
 
-      { at:72, view:"insideTop", emoji:"🦁👆", caption:"🦁 👆", text:"Open big like a lion. Brush behind the top teeth." },
-      { at:66, view:"insideTop", emoji:"🔎👆", caption:"🔎🦷", text:"Look behind the top teeth. Sneaky crumbs hide there." },
-      { at:60, view:"insideTop", emoji:"✨👆", caption:"🪥✨", text:"Wiggle the brush behind the top teeth. Sparkle sparkle." },
-      { at:54, view:"insideTop", emoji:"👋🐛", caption:"👋🐛", text:"Say bye bye sugar bugs behind the top teeth." },
+      { at:132, view:"insideTop", glow:".topInside", emoji:"🦁👆", caption:"🦁👆", text:"Open big like a lion. Brush behind the top teeth. Follow the blue touch circle." },
+      { at:126, view:"insideTop", glow:".topInside", emoji:"🔎👆", caption:"🔎🦷", text:"Behind the top teeth is a secret cave. Chase the crumbs away." },
+      { at:120, view:"insideTop", glow:".topInside", emoji:"🪥👆", caption:"🪥✨", text:"Wiggle wiggle behind the top teeth. Gentle brushing only." },
 
-      { at:48, view:"insideBottom", emoji:"🦁👇", caption:"🦁 👇", text:"Now behind the bottom teeth. Open wide again." },
-      { at:42, view:"insideBottom", emoji:"🔎👇", caption:"🔎🦷", text:"Brush behind the bottom teeth. Tiny gentle circles." },
-      { at:36, view:"insideBottom", emoji:"✨👇", caption:"🪥✨", text:"Clean the middle too. Do not let crumbs play hide and seek." },
+      { at:114, view:"insideBottom", glow:".bottomInside", emoji:"🦁👇", caption:"🦁👇", text:"Now behind the bottom teeth. Open wide again and touch the yellow teeth." },
+      { at:108, view:"insideBottom", glow:".bottomInside", emoji:"🔎👇", caption:"🔎🦷", text:"Sneaky crumbs hide behind bottom teeth too. We found them." },
+      { at:102, view:"insideBottom", glow:".bottomInside", emoji:"✨👇", caption:"🪥✨", text:"Brush behind bottom teeth. Tiny circles. Nice and easy." },
 
-      { at:30, view:"chew", emoji:"↖️🦷", corner:"top-left", caption:"↖️🪥", text:"Chewing teeth time. Top left corner. Scrub the flat teeth." },
-      { at:24, view:"chew", emoji:"↗️🦷", corner:"top-right", caption:"↗️🪥", text:"Top right corner. Scrub scrub like a tiny race car." },
-      { at:18, view:"chew", emoji:"↙️🦷", corner:"bottom-left", caption:"↙️🪥", text:"Bottom left corner. These teeth chew snacks, clean the flat tops." },
-      { at:12, view:"chew", emoji:"↘️🦷", corner:"bottom-right", caption:"↘️🪥", text:"Bottom right corner. Last tooth corner, champion." },
-      { at:6, view:"chew", emoji:"👅✨", corner:"bottom-right", caption:"👅✨", text:"Final sparkle. Gently brush your tongue. Almost done." },
-      { at:1, view:"chew", emoji:"🎉😁", corner:"bottom-right", caption:"🎉😁", text:"Three, two, one. Tooth party complete." }
+      { at:96, view:"insideLeft", glow:".leftInside", emoji:"👈🦷", caption:"👈🦷", text:"Now inside left side teeth. Brush the side wall of teeth." },
+      { at:90, view:"insideLeft", glow:".leftInside", emoji:"👈🪥", caption:"👈✨", text:"Left side, little circles. The toothbrush is tickling the side teeth." },
+      { at:84, view:"insideLeft", glow:".leftInside", emoji:"👈⭐", caption:"⭐👈", text:"Left inside teeth are getting clean. Bye bye crumb monsters." },
+
+      { at:78, view:"insideRight", glow:".rightInside", emoji:"👉🦷", caption:"👉🦷", text:"Now inside right side teeth. Brush the other side wall." },
+      { at:72, view:"insideRight", glow:".rightInside", emoji:"👉🪥", caption:"👉✨", text:"Right side, tiny circles. Toothbrush says, excuse me crumbs." },
+      { at:66, view:"insideRight", glow:".rightInside", emoji:"👉⭐", caption:"⭐👉", text:"Right side is shining. You are doing superhero brushing." },
+
+      { at:60, view:"chew", corner:"top-left", emoji:"↖️🦷", caption:"↖️🪥", text:"Chewing teeth time. Top left corner. Scrub the flat teeth back and forth." },
+      { at:54, view:"chew", corner:"top-left", emoji:"↖️🚗", caption:"↖️🚗", text:"Top left again. Make the toothbrush a tiny car. Vroom vroom scrub." },
+      { at:48, view:"chew", corner:"top-right", emoji:"↗️🦷", caption:"↗️🪥", text:"Move to top right corner. Scrub the flat chewing teeth." },
+      { at:42, view:"chew", corner:"top-right", emoji:"↗️🚂", caption:"↗️🚂", text:"Top right train track. Chugga chugga, clean those snack teeth." },
+      { at:36, view:"chew", corner:"bottom-left", emoji:"↙️🦷", caption:"↙️🪥", text:"Bottom left corner. These teeth chew yummy food. Clean the flat tops." },
+      { at:30, view:"chew", corner:"bottom-left", emoji:"↙️🐸", caption:"↙️🐸", text:"Bottom left is hopping clean like a funny frog. Ribbit scrub scrub." },
+      { at:24, view:"chew", corner:"bottom-right", emoji:"↘️🦷", caption:"↘️🪥", text:"Bottom right corner. Last chewing corner. You are a brushing champion." },
+      { at:18, view:"chew", corner:"bottom-right", emoji:"↘️⭐", caption:"↘️⭐", text:"Bottom right again. Scrub, scrub, sparkle. Almost done." },
+      { at:12, view:"chew", corner:"bottom-right", emoji:"👅✨", caption:"👅✨", text:"Gently brush your tongue. Soft soft soft. No superhero pushing." },
+      { at:6, view:"chew", corner:"bottom-right", emoji:"🎉😁", caption:"🎉😁", text:"Final sparkle countdown. Three, two, one, big shiny smile." }
     ];
 
     function loadVoices() {
@@ -653,7 +704,7 @@
 
     function testVoice() {
       loadVoices();
-      speak("Hi brushing buddy. Follow the pictures and I will guide you.");
+      speak("Hi brushing buddy. I will talk for the whole three minutes. Follow the glowing teeth.");
     }
 
     function formatTime(seconds) {
@@ -676,37 +727,25 @@
 
     function clearVisuals() {
       Object.values(views).forEach(v => v.classList.remove("show"));
-      document.querySelectorAll(".active-tooth").forEach(el => el.classList.remove("active-tooth"));
-      document.querySelectorAll(".glow").forEach(el => el.classList.remove("glow"));
-      document.querySelectorAll(".corner").forEach(el => el.classList.remove("active"));
+      document.querySelectorAll(".active").forEach(el => el.classList.remove("active"));
+      document.querySelectorAll(".active-corner").forEach(el => el.classList.remove("active-corner"));
     }
 
     function showStep(step) {
       clearVisuals();
+
       views[step.view].classList.add("show");
 
-      if (step.view === "top") {
-        document.querySelectorAll(".top-tooth").forEach(t => t.classList.add("active-tooth"));
+      if (step.glow) {
+        document.querySelectorAll(step.glow).forEach(el => el.classList.add("active"));
       }
 
-      if (step.view === "bottom") {
-        document.querySelectorAll(".bottom-tooth").forEach(t => t.classList.add("active-tooth"));
+      if (step.corner) {
+        const c = document.getElementById(step.corner);
+        if (c) c.classList.add("active-corner");
       }
 
-      if (step.view === "insideTop") {
-        document.querySelectorAll(".top-inside").forEach(t => t.classList.add("glow"));
-      }
-
-      if (step.view === "insideBottom") {
-        document.querySelectorAll(".bottom-inside").forEach(t => t.classList.add("glow"));
-      }
-
-      if (step.view === "chew" && step.corner) {
-        const cornerEl = document.getElementById(step.corner);
-        if (cornerEl) cornerEl.classList.add("active");
-      }
-
-      bigEmojiEl.textContent = step.emoji;
+      emojiLineEl.textContent = step.emoji;
       captionEl.textContent = step.caption;
     }
 
@@ -725,6 +764,7 @@
 
     function startTimer() {
       loadVoices();
+
       if (running) return;
 
       running = true;
@@ -733,11 +773,12 @@
       const { step, index } = getCurrentStep();
       currentSpeechIndex = index;
       showStep(step);
-      speak("Ready, set, brush. " + step.text);
+      speak(step.text);
 
       interval = setInterval(() => {
         timeLeft--;
         updateDisplay();
+
         if (timeLeft <= 0) finishTimer();
       }, 1000);
     }
@@ -755,12 +796,12 @@
       currentSpeechIndex = -1;
       celebrateEl.style.display = "none";
       progressEl.style.width = "0%";
-      timerEl.textContent = "02:00";
-      bigEmojiEl.textContent = "👆🦷";
+      timerEl.textContent = "03:00";
+      emojiLineEl.textContent = "👆🦷✨";
       captionEl.textContent = "Tap ▶ Start";
       clearVisuals();
-      views.top.classList.add("show");
-      document.querySelectorAll(".top-tooth").forEach(t => t.classList.add("active-tooth"));
+      views.outsideTop.classList.add("show");
+      document.querySelectorAll(".topOutside").forEach(el => el.classList.add("active"));
 
       if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     }
@@ -770,7 +811,8 @@
       clearInterval(interval);
       timeLeft = 0;
       progressEl.style.width = "100%";
-      bigEmojiEl.textContent = "🎉😁";
+      timerEl.textContent = "00:00";
+      emojiLineEl.textContent = "🎉😁";
       captionEl.textContent = "🎉⭐😁⭐🎉";
       celebrateEl.style.display = "block";
       speak("All done. Great brushing. You defeated the sugar bugs. Big shiny smile.");
