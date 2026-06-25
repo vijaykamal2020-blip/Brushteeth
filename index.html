@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brush Teeth Timer</title>
+  <title>Kids Brush Teeth Timer</title>
   <style>
     * { box-sizing: border-box; }
 
@@ -11,237 +11,339 @@
       margin: 0;
       font-family: "Comic Sans MS", "Arial Rounded MT Bold", Arial, sans-serif;
       min-height: 100vh;
-      background: linear-gradient(135deg, #9be7ff, #ffd6f6, #fff3a3);
+      background: linear-gradient(135deg, #8ee7ff, #ffc7f3, #fff59d);
       color: #263238;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 16px;
+      padding: 14px;
     }
 
     .app {
       width: 100%;
-      max-width: 430px;
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 28px;
-      padding: 20px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+      max-width: 460px;
+      background: rgba(255,255,255,0.97);
+      border-radius: 30px;
+      padding: 18px;
+      box-shadow: 0 18px 38px rgba(0,0,0,0.18);
       text-align: center;
-      border: 5px solid #ffffff;
+      border: 5px solid white;
     }
 
     h1 {
-      margin: 6px 0 8px;
-      font-size: 30px;
-      color: #ff5c8a;
+      margin: 4px 0 6px;
+      font-size: 29px;
+      color: #ff4081;
       text-shadow: 1px 1px 0 #fff176;
     }
 
     .subtitle {
-      font-size: 16px;
-      margin-bottom: 14px;
-      color: #455a64;
       font-weight: bold;
+      color: #546e7a;
+      font-size: 15px;
+      margin-bottom: 10px;
     }
 
-    .character {
-      font-size: 58px;
-      margin: 5px 0;
+    .hero {
+      font-size: 54px;
       animation: bounce 1.2s infinite;
     }
 
     @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
     }
 
     .timer-card {
       background: linear-gradient(135deg, #fff176, #ffcc80);
-      border-radius: 24px;
-      padding: 18px;
-      margin: 14px 0;
-      border: 4px dashed #ff8a65;
+      border: 4px dashed #ff7043;
+      border-radius: 25px;
+      padding: 15px;
+      margin: 10px 0;
     }
 
     .timer {
-      font-size: 54px;
-      font-weight: bold;
+      font-size: 52px;
       color: #2e7d32;
+      font-weight: bold;
       letter-spacing: 2px;
     }
 
     .zone {
-      margin-top: 10px;
+      min-height: 56px;
+      margin-top: 8px;
       font-size: 22px;
       font-weight: bold;
       color: #6a1b9a;
-      min-height: 58px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 0 8px;
+      justify-content: center;
     }
 
-    .tip {
+    .instruction {
       background: #e1f5fe;
       color: #01579b;
-      border-radius: 18px;
+      border-radius: 20px;
       padding: 12px;
+      margin: 10px 0;
+      min-height: 58px;
       font-size: 16px;
       font-weight: bold;
-      margin: 12px 0;
-      min-height: 58px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .mouth {
-      background: #fff;
-      border-radius: 28px;
-      padding: 14px;
-      margin: 12px 0;
+    .visual-stage {
+      background: linear-gradient(135deg, #ffffff, #f3e5f5);
       border: 4px solid #b3e5fc;
-      position: relative;
+      border-radius: 26px;
+      padding: 12px;
+      margin: 10px 0;
+    }
+
+    .mouth-visual {
+      display: block;
+    }
+
+    .inside-visual,
+    .chewing-visual {
+      display: none;
+    }
+
+    .mouth-label {
+      font-size: 15px;
+      font-weight: bold;
+      color: #6d4c41;
+      margin-bottom: 6px;
     }
 
     .teeth-row {
       display: flex;
       justify-content: center;
-      gap: 5px;
-      margin: 7px 0;
+      gap: 6px;
+      margin: 9px 0;
     }
 
     .tooth {
-      width: 26px;
-      height: 34px;
+      width: 28px;
+      height: 36px;
       background: #eeeeee;
       border: 3px solid #b0bec5;
-      border-radius: 7px 7px 13px 13px;
-      transition: 0.3s;
+      border-radius: 8px 8px 15px 15px;
+      transition: 0.25s;
+      position: relative;
     }
 
     .molar {
-      width: 31px;
-      border-radius: 12px;
+      width: 33px;
+      border-radius: 14px 14px 16px 16px;
     }
 
-    .tooth.active {
-      background: #fff59d;
+    .tooth.top-active,
+    .tooth.bottom-active {
+      background: #fff176;
       border-color: #ff9800;
-      transform: scale(1.15);
-      box-shadow: 0 0 12px #ffca28;
-    }
-
-    .tooth.chewing-active {
-      background: #ffecb3;
-      border-color: #f57c00;
-      transform: scale(1.22);
-      box-shadow: 0 0 15px #ff9800;
+      box-shadow: 0 0 14px #ffca28;
+      transform: scale(1.18);
     }
 
     .tooth.done {
-      background: #ffffff;
+      background: white;
       border-color: #66bb6a;
       box-shadow: 0 0 8px #81c784;
     }
 
-    .chewing-visual {
+    .brush-arrow {
+      font-size: 30px;
+      margin: 4px 0;
+      color: #ff7043;
+      animation: wiggle 0.7s infinite alternate;
+    }
+
+    @keyframes wiggle {
+      from { transform: translateX(-12px); }
+      to { transform: translateX(12px); }
+    }
+
+    .inside-visual.show,
+    .chewing-visual.show {
+      display: block;
+      animation: pop 0.35s ease;
+    }
+
+    .mouth-visual.hide {
       display: none;
-      background: linear-gradient(135deg, #e8f5e9, #fffde7);
-      border: 4px solid #81c784;
-      border-radius: 24px;
-      padding: 14px;
-      margin: 12px 0;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.86); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .inside-card {
+      background: #fffde7;
+      border: 4px solid #ffb74d;
+      border-radius: 22px;
+      padding: 12px;
+    }
+
+    .inside-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ef6c00;
+      margin-bottom: 8px;
+    }
+
+    .inside-mouth {
+      width: 220px;
+      height: 138px;
+      background: #ffcdd2;
+      border: 5px solid #ef5350;
+      border-radius: 50%;
+      margin: 0 auto;
       position: relative;
       overflow: hidden;
     }
 
-    .chewing-visual.show {
-      display: block;
-      animation: popIn 0.4s ease;
+    .inside-teeth {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .inside-teeth.top-inside {
+      top: 12px;
+    }
+
+    .inside-teeth.bottom-inside {
+      bottom: 12px;
+    }
+
+    .inside-mini-tooth {
+      width: 22px;
+      height: 30px;
+      background: white;
+      border: 3px solid #b0bec5;
+      border-radius: 7px;
+    }
+
+    .inside-mini-tooth.glow {
+      background: #fff176;
+      border-color: #ff9800;
+      box-shadow: 0 0 12px #ffca28;
+    }
+
+    .inside-brush {
+      position: absolute;
+      font-size: 36px;
+      left: 82px;
+      animation: insideBrush 0.8s infinite alternate;
+    }
+
+    .inside-brush.top-brush {
+      top: 45px;
+    }
+
+    .inside-brush.bottom-brush {
+      bottom: 42px;
+    }
+
+    @keyframes insideBrush {
+      from { transform: translateX(-28px) rotate(-15deg); }
+      to { transform: translateX(28px) rotate(12deg); }
+    }
+
+    .chewing-card {
+      background: #e8f5e9;
+      border: 4px solid #66bb6a;
+      border-radius: 24px;
+      padding: 12px;
     }
 
     .chewing-title {
-      font-size: 19px;
+      font-size: 20px;
       font-weight: bold;
       color: #2e7d32;
       margin-bottom: 8px;
     }
 
-    .chewing-mouth {
+    .chewing-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      align-items: center;
+      gap: 10px;
     }
 
-    .molar-zone {
-      background: #ffffff;
-      border: 3px dashed #ff9800;
+    .corner {
+      background: white;
+      border: 4px dashed #ff9800;
       border-radius: 18px;
-      padding: 10px;
-      min-height: 95px;
+      min-height: 105px;
+      padding: 8px;
       position: relative;
     }
 
-    .molar-label {
-      font-size: 14px;
-      font-weight: bold;
-      color: #6d4c41;
-      margin-bottom: 5px;
+    .corner.active-corner {
+      background: #fff8e1;
+      border-color: #f57c00;
+      box-shadow: 0 0 14px #ffb74d;
+      transform: scale(1.03);
     }
 
-    .big-molars {
+    .corner-label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #5d4037;
+      min-height: 32px;
+    }
+
+    .flat-molars {
       display: flex;
       justify-content: center;
-      gap: 6px;
-      margin-top: 4px;
+      gap: 5px;
+      margin-top: 3px;
     }
 
-    .big-molar {
-      width: 34px;
-      height: 38px;
-      background: #fff8e1;
+    .flat-molar {
+      width: 32px;
+      height: 34px;
       border: 4px solid #ff9800;
-      border-radius: 12px 12px 16px 16px;
+      border-radius: 12px;
+      background: #fffde7;
       box-shadow: inset 0 -5px 0 #ffe0b2;
     }
 
-    .mini-brush {
-      font-size: 34px;
+    .corner.active-corner .flat-molar {
+      background: #fff176;
+      box-shadow: 0 0 10px #ffca28;
+    }
+
+    .corner-brush {
       position: absolute;
-      bottom: 4px;
-      left: 28%;
-      animation: scrub 0.8s infinite alternate ease-in-out;
+      bottom: 2px;
+      left: 30%;
+      font-size: 31px;
+      animation: scrub 0.75s infinite alternate ease-in-out;
     }
 
     @keyframes scrub {
-      from { transform: translateX(-16px) rotate(-15deg); }
-      to { transform: translateX(28px) rotate(12deg); }
-    }
-
-    @keyframes popIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .chewing-hint {
-      margin-top: 8px;
-      font-size: 15px;
-      font-weight: bold;
-      color: #ef6c00;
+      from { transform: translateX(-15px) rotate(-15deg); }
+      to { transform: translateX(24px) rotate(12deg); }
     }
 
     .progress-wrap {
       width: 100%;
       height: 22px;
-      background: #eceff1;
       border-radius: 999px;
       overflow: hidden;
-      border: 3px solid #ffffff;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
-      margin: 12px 0;
+      border: 3px solid white;
+      background: #eceff1;
+      margin: 11px 0;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.14);
     }
 
     .progress {
@@ -249,26 +351,25 @@
       width: 0%;
       background: linear-gradient(90deg, #66bb6a, #29b6f6, #ab47bc, #ff7043);
       transition: width 0.5s linear;
-      border-radius: 999px;
     }
 
     .buttons {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
+      gap: 9px;
+      margin-top: 12px;
     }
 
     button {
       border: none;
-      padding: 14px 10px;
       border-radius: 18px;
-      font-size: 17px;
+      padding: 13px 8px;
+      font-size: 16px;
       font-weight: bold;
-      cursor: pointer;
       color: white;
-      box-shadow: 0 6px 0 rgba(0,0,0,0.18);
       font-family: inherit;
+      cursor: pointer;
+      box-shadow: 0 6px 0 rgba(0,0,0,0.18);
     }
 
     button:active {
@@ -281,20 +382,11 @@
     .reset { background: #e53935; }
     .voice { background: #5e35b1; }
 
-    .steps {
-      margin-top: 16px;
-      display: grid;
-      gap: 8px;
-      text-align: left;
-    }
-
-    .step {
-      background: #f3e5f5;
-      padding: 10px 12px;
-      border-radius: 16px;
-      font-size: 15px;
+    .voice-note {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #546e7a;
       font-weight: bold;
-      border-left: 8px solid #ba68c8;
     }
 
     .celebrate {
@@ -306,74 +398,131 @@
       border-radius: 20px;
       font-size: 21px;
       font-weight: bold;
-      animation: popIn 0.7s ease;
+      animation: pop 0.5s ease;
     }
 
-    .voice-note {
-      margin-top: 10px;
-      font-size: 13px;
-      color: #546e7a;
+    .steps {
+      margin-top: 13px;
+      text-align: left;
+      display: grid;
+      gap: 7px;
+    }
+
+    .step {
+      background: #f3e5f5;
+      border-left: 8px solid #ba68c8;
+      border-radius: 15px;
+      padding: 9px 10px;
+      font-size: 14px;
       font-weight: bold;
     }
 
-    @media (max-width: 380px) {
-      h1 { font-size: 26px; }
+    @media (max-width: 390px) {
       .timer { font-size: 46px; }
-      .zone { font-size: 20px; }
-      button { font-size: 15px; }
-      .tooth { width: 22px; height: 30px; }
-      .molar { width: 27px; }
-      .chewing-mouth { gap: 8px; }
-      .big-molar { width: 29px; height: 34px; }
+      h1 { font-size: 25px; }
+      .zone { font-size: 19px; }
+      .tooth { width: 23px; height: 31px; }
+      .molar { width: 28px; }
+      .inside-mouth { width: 200px; }
+      .flat-molar { width: 27px; height: 31px; }
+      .corner-label { font-size: 12px; }
     }
   </style>
 </head>
 <body>
   <div class="app">
-    <div class="character">🪥🦷</div>
+    <div class="hero">🪥🦷✨</div>
     <h1>Brush Teeth Time!</h1>
-    <div class="subtitle">Brush for 2 minutes and make your teeth sparkle ✨</div>
+    <div class="subtitle">Follow the glowing teeth for 2 minutes</div>
 
     <div class="timer-card">
       <div id="timer" class="timer">02:00</div>
       <div id="zone" class="zone">Press Start to begin!</div>
     </div>
 
-    <div class="mouth">
-      <div class="teeth-row">
-        <div class="tooth top molar back"></div><div class="tooth top molar back"></div><div class="tooth top front"></div>
-        <div class="tooth top front"></div><div class="tooth top molar back"></div><div class="tooth top molar back"></div>
+    <div class="visual-stage">
+      <div id="mouthVisual" class="mouth-visual">
+        <div class="mouth-label">Front view: yellow teeth are the ones to brush</div>
+
+        <div class="brush-arrow">🪥 ↔️</div>
+
+        <div class="teeth-row">
+          <div class="tooth top molar back top-left"></div>
+          <div class="tooth top molar back top-left"></div>
+          <div class="tooth top front"></div>
+          <div class="tooth top front"></div>
+          <div class="tooth top molar back top-right"></div>
+          <div class="tooth top molar back top-right"></div>
+        </div>
+
+        <div class="teeth-row">
+          <div class="tooth bottom molar back bottom-left"></div>
+          <div class="tooth bottom molar back bottom-left"></div>
+          <div class="tooth bottom front"></div>
+          <div class="tooth bottom front"></div>
+          <div class="tooth bottom molar back bottom-right"></div>
+          <div class="tooth bottom molar back bottom-right"></div>
+        </div>
       </div>
-      <div class="teeth-row">
-        <div class="tooth bottom molar back"></div><div class="tooth bottom molar back"></div><div class="tooth bottom front"></div>
-        <div class="tooth bottom front"></div><div class="tooth bottom molar back"></div><div class="tooth bottom molar back"></div>
+
+      <div id="insideVisual" class="inside-visual">
+        <div class="inside-card">
+          <div id="insideTitle" class="inside-title">Inside teeth</div>
+          <div class="inside-mouth">
+            <div class="inside-teeth top-inside">
+              <div class="inside-mini-tooth top-inside-tooth"></div>
+              <div class="inside-mini-tooth top-inside-tooth"></div>
+              <div class="inside-mini-tooth top-inside-tooth"></div>
+              <div class="inside-mini-tooth top-inside-tooth"></div>
+              <div class="inside-mini-tooth top-inside-tooth"></div>
+            </div>
+
+            <div id="insideBrush" class="inside-brush top-brush">🪥</div>
+
+            <div class="inside-teeth bottom-inside">
+              <div class="inside-mini-tooth bottom-inside-tooth"></div>
+              <div class="inside-mini-tooth bottom-inside-tooth"></div>
+              <div class="inside-mini-tooth bottom-inside-tooth"></div>
+              <div class="inside-mini-tooth bottom-inside-tooth"></div>
+              <div class="inside-mini-tooth bottom-inside-tooth"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="chewingVisual" class="chewing-visual">
+        <div class="chewing-card">
+          <div class="chewing-title">Chewing teeth: brush all 4 corners</div>
+          <div class="chewing-grid">
+            <div id="corner-top-left" class="corner">
+              <div class="corner-label">Top Left<br>Back Teeth</div>
+              <div class="flat-molars"><div class="flat-molar"></div><div class="flat-molar"></div></div>
+              <div class="corner-brush">🪥</div>
+            </div>
+
+            <div id="corner-top-right" class="corner">
+              <div class="corner-label">Top Right<br>Back Teeth</div>
+              <div class="flat-molars"><div class="flat-molar"></div><div class="flat-molar"></div></div>
+              <div class="corner-brush">🪥</div>
+            </div>
+
+            <div id="corner-bottom-left" class="corner">
+              <div class="corner-label">Bottom Left<br>Back Teeth</div>
+              <div class="flat-molars"><div class="flat-molar"></div><div class="flat-molar"></div></div>
+              <div class="corner-brush">🪥</div>
+            </div>
+
+            <div id="corner-bottom-right" class="corner">
+              <div class="corner-label">Bottom Right<br>Back Teeth</div>
+              <div class="flat-molars"><div class="flat-molar"></div><div class="flat-molar"></div></div>
+              <div class="corner-brush">🪥</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div id="chewingVisual" class="chewing-visual">
-      <div class="chewing-title">Brush the back chewing teeth!</div>
-      <div class="chewing-mouth">
-        <div class="molar-zone">
-          <div class="molar-label">Left back teeth</div>
-          <div class="big-molars">
-            <div class="big-molar"></div>
-            <div class="big-molar"></div>
-          </div>
-          <div class="mini-brush">🪥</div>
-        </div>
-        <div class="molar-zone">
-          <div class="molar-label">Right back teeth</div>
-          <div class="big-molars">
-            <div class="big-molar"></div>
-            <div class="big-molar"></div>
-          </div>
-          <div class="mini-brush">🪥</div>
-        </div>
-      </div>
-      <div class="chewing-hint">Scrub back and forth on the flat teeth: chugga-chugga! 🚂</div>
-    </div>
-
-    <div id="tip" class="tip">Use small circles. Be gentle. Do not rush!</div>
+    <div id="instruction" class="instruction">Use small circles. Be gentle. Do not rush!</div>
 
     <div class="progress-wrap">
       <div id="progress" class="progress"></div>
@@ -386,21 +535,18 @@
       <button class="voice" onclick="testVoice()">🔊 Test Voice</button>
     </div>
 
-    <div class="voice-note">
-      On iPhone/Chrome, tap Start once to allow voice announcements.
-    </div>
+    <div class="voice-note">Tap Start once to allow voice on mobile.</div>
 
     <div id="celebrate" class="celebrate">
-      Great job! Teeth are clean and shiny! 🎉
+      Great brushing! Your teeth are shiny! 🎉
       <div>⭐ ⭐ ⭐ ⭐ ⭐</div>
     </div>
 
     <div class="steps">
-      <div class="step">1. Brush outside of top teeth.</div>
-      <div class="step">2. Brush outside of bottom teeth.</div>
-      <div class="step">3. Brush inside of top teeth.</div>
-      <div class="step">4. Brush inside of bottom teeth.</div>
-      <div class="step">5. Brush back chewing teeth and gently brush tongue.</div>
+      <div class="step">1. Outside top teeth glow yellow.</div>
+      <div class="step">2. Outside bottom teeth glow yellow.</div>
+      <div class="step">3. Inside top and inside bottom show a big open-mouth picture.</div>
+      <div class="step">4. Chewing teeth show all 4 back corners.</div>
     </div>
   </div>
 
@@ -409,66 +555,112 @@
     let timeLeft = totalTime;
     let interval = null;
     let running = false;
-    let lastSpokenZone = "";
+    let lastSpokenId = "";
+    let lastEncouragement = -1;
 
     const timerEl = document.getElementById("timer");
     const zoneEl = document.getElementById("zone");
-    const tipEl = document.getElementById("tip");
+    const instructionEl = document.getElementById("instruction");
     const progressEl = document.getElementById("progress");
     const celebrateEl = document.getElementById("celebrate");
+
+    const mouthVisualEl = document.getElementById("mouthVisual");
+    const insideVisualEl = document.getElementById("insideVisual");
+    const insideTitleEl = document.getElementById("insideTitle");
+    const insideBrushEl = document.getElementById("insideBrush");
     const chewingVisualEl = document.getElementById("chewingVisual");
+
     const teeth = document.querySelectorAll(".tooth");
+    const topInsideTeeth = document.querySelectorAll(".top-inside-tooth");
+    const bottomInsideTeeth = document.querySelectorAll(".bottom-inside-tooth");
+    const corners = document.querySelectorAll(".corner");
 
     const zones = [
       {
+        id: "top-outside",
         start: 120,
-        end: 96,
-        title: "Top outside teeth",
-        emoji: "🦷⬆️",
-        say: "Brush the outside of your top teeth.",
-        tip: "Brush the front and sides of the top teeth with tiny circles.",
-        className: "top",
-        chewing: false
+        end: 101,
+        title: "Top teeth",
+        emoji: "⬆️🦷",
+        visual: "mouth",
+        highlight: "top",
+        say: "Brush the top teeth. Move the brush side to side and make tiny circles.",
+        text: "Brush the TOP teeth. Follow the yellow teeth!"
       },
       {
-        start: 95,
-        end: 72,
-        title: "Bottom outside teeth",
-        emoji: "🦷⬇️",
-        say: "Now brush the outside of your bottom teeth.",
-        tip: "Move slowly across the bottom teeth. Small circles!",
-        className: "bottom",
-        chewing: false
+        id: "bottom-outside",
+        start: 100,
+        end: 81,
+        title: "Bottom teeth",
+        emoji: "⬇️🦷",
+        visual: "mouth",
+        highlight: "bottom",
+        say: "Now brush the bottom teeth. Nice and gentle.",
+        text: "Brush the BOTTOM teeth. Follow the yellow teeth!"
       },
       {
-        start: 71,
-        end: 48,
+        id: "inside-top",
+        start: 80,
+        end: 61,
         title: "Inside top teeth",
         emoji: "😁⬆️",
-        say: "Now brush behind your top teeth.",
-        tip: "Open wide and brush behind the top teeth.",
-        className: "top",
-        chewing: false
+        visual: "inside-top",
+        say: "Open wide. Brush the inside of the top teeth.",
+        text: "Open wide! Brush BEHIND the TOP teeth."
       },
       {
-        start: 47,
-        end: 24,
+        id: "inside-bottom",
+        start: 60,
+        end: 41,
         title: "Inside bottom teeth",
         emoji: "😁⬇️",
-        say: "Now brush behind your bottom teeth.",
-        tip: "Brush behind the bottom teeth. Gentle, gentle!",
-        className: "bottom",
-        chewing: false
+        visual: "inside-bottom",
+        say: "Now brush the inside of the bottom teeth.",
+        text: "Brush BEHIND the BOTTOM teeth."
       },
       {
-        start: 23,
+        id: "chew-top-left",
+        start: 40,
+        end: 31,
+        title: "Top left chewing teeth",
+        emoji: "🟨🪥",
+        visual: "chewing",
+        corner: "corner-top-left",
+        say: "Brush the top left chewing teeth. Scrub the flat teeth back and forth.",
+        text: "Scrub TOP LEFT back teeth."
+      },
+      {
+        id: "chew-top-right",
+        start: 30,
+        end: 21,
+        title: "Top right chewing teeth",
+        emoji: "🟨🪥",
+        visual: "chewing",
+        corner: "corner-top-right",
+        say: "Now brush the top right chewing teeth.",
+        text: "Scrub TOP RIGHT back teeth."
+      },
+      {
+        id: "chew-bottom-left",
+        start: 20,
+        end: 11,
+        title: "Bottom left chewing teeth",
+        emoji: "🟨🪥",
+        visual: "chewing",
+        corner: "corner-bottom-left",
+        say: "Now brush the bottom left chewing teeth.",
+        text: "Scrub BOTTOM LEFT back teeth."
+      },
+      {
+        id: "chew-bottom-right",
+        start: 10,
         end: 0,
-        title: "Chewing teeth and tongue",
-        emoji: "🪥👅",
-        say: "Now brush the back chewing teeth. Scrub the flat teeth back and forth. Then gently brush your tongue.",
-        tip: "Brush the flat back teeth on both sides, then gently brush your tongue.",
-        className: "back",
-        chewing: true
+        title: "Bottom right chewing teeth",
+        emoji: "🟨🪥",
+        visual: "chewing",
+        corner: "corner-bottom-right",
+        say: "Last one. Brush the bottom right chewing teeth. Then gently brush your tongue.",
+        text: "Scrub BOTTOM RIGHT back teeth. Then gently brush tongue."
       }
     ];
 
@@ -490,27 +682,27 @@
 
       window.speechSynthesis.cancel();
 
-      const msg = new SpeechSynthesisUtterance(text);
       const voices = window.speechSynthesis.getVoices();
-
-      const englishVoice =
+      const voice =
+        voices.find(v => v.name.toLowerCase().includes("samantha")) ||
+        voices.find(v => v.name.toLowerCase().includes("google us english")) ||
         voices.find(v => v.lang && v.lang.toLowerCase().startsWith("en-us")) ||
         voices.find(v => v.lang && v.lang.toLowerCase().startsWith("en")) ||
         voices[0];
 
-      if (englishVoice) msg.voice = englishVoice;
-
+      const msg = new SpeechSynthesisUtterance(text);
+      if (voice) msg.voice = voice;
       msg.lang = "en-US";
-      msg.rate = 0.85;
-      msg.pitch = 1.25;
+      msg.rate = 0.82;
+      msg.pitch = 1.22;
       msg.volume = 1;
 
-      setTimeout(() => window.speechSynthesis.speak(msg), 80);
+      setTimeout(() => window.speechSynthesis.speak(msg), 70);
     }
 
     function testVoice() {
       loadVoices();
-      speak("Voice is working. Let's brush teeth!");
+      speak("Hi! Voice is working. Let's brush teeth together.");
     }
 
     function formatTime(seconds) {
@@ -523,24 +715,82 @@
       return zones.find(z => timeLeft <= z.start && timeLeft >= z.end) || zones[zones.length - 1];
     }
 
-    function updateTeeth(zone) {
-      teeth.forEach(tooth => {
-        tooth.classList.remove("active", "chewing-active");
+    function resetHighlights() {
+      teeth.forEach(t => t.classList.remove("top-active", "bottom-active"));
+      topInsideTeeth.forEach(t => t.classList.remove("glow"));
+      bottomInsideTeeth.forEach(t => t.classList.remove("glow"));
+      corners.forEach(c => c.classList.remove("active-corner"));
+    }
 
-        const elapsed = totalTime - timeLeft;
-        if (elapsed > 24) tooth.classList.add("done");
+    function showMouthVisual(zone) {
+      mouthVisualEl.classList.remove("hide");
+      insideVisualEl.classList.remove("show");
+      chewingVisualEl.classList.remove("show");
 
-        if (zone.chewing && tooth.classList.contains("back")) {
-          tooth.classList.add("chewing-active");
-        } else if (!zone.chewing && tooth.classList.contains(zone.className)) {
-          tooth.classList.add("active");
-        }
-      });
+      if (zone.highlight === "top") {
+        document.querySelectorAll(".tooth.top").forEach(t => t.classList.add("top-active"));
+      }
 
-      if (zone.chewing) {
-        chewingVisualEl.classList.add("show");
+      if (zone.highlight === "bottom") {
+        document.querySelectorAll(".tooth.bottom").forEach(t => t.classList.add("bottom-active"));
+      }
+    }
+
+    function showInsideVisual(type) {
+      mouthVisualEl.classList.add("hide");
+      insideVisualEl.classList.add("show");
+      chewingVisualEl.classList.remove("show");
+
+      if (type === "inside-top") {
+        insideTitleEl.textContent = "Inside TOP teeth";
+        insideBrushEl.className = "inside-brush top-brush";
+        topInsideTeeth.forEach(t => t.classList.add("glow"));
       } else {
-        chewingVisualEl.classList.remove("show");
+        insideTitleEl.textContent = "Inside BOTTOM teeth";
+        insideBrushEl.className = "inside-brush bottom-brush";
+        bottomInsideTeeth.forEach(t => t.classList.add("glow"));
+      }
+    }
+
+    function showChewingVisual(zone) {
+      mouthVisualEl.classList.add("hide");
+      insideVisualEl.classList.remove("show");
+      chewingVisualEl.classList.add("show");
+
+      const activeCorner = document.getElementById(zone.corner);
+      if (activeCorner) activeCorner.classList.add("active-corner");
+    }
+
+    function updateVisual(zone) {
+      resetHighlights();
+
+      if (zone.visual === "mouth") showMouthVisual(zone);
+      if (zone.visual === "inside-top") showInsideVisual("inside-top");
+      if (zone.visual === "inside-bottom") showInsideVisual("inside-bottom");
+      if (zone.visual === "chewing") showChewingVisual(zone);
+    }
+
+    function regularGuidance() {
+      const elapsed = totalTime - timeLeft;
+
+      if (elapsed > 0 && elapsed % 10 === 0 && elapsed !== lastEncouragement) {
+        lastEncouragement = elapsed;
+
+        const zone = getCurrentZone();
+
+        const lines = [
+          "Great job. Keep brushing gently.",
+          "Small circles. You are doing amazing.",
+          "Do not rush. Follow the yellow picture.",
+          "Nice brushing. Keep going.",
+          "Almost there. Make every tooth shiny."
+        ];
+
+        if (zone.visual === "chewing") {
+          speak(zone.say);
+        } else {
+          speak(lines[(elapsed / 10) % lines.length]);
+        }
       }
     }
 
@@ -552,11 +802,12 @@
 
       const zone = getCurrentZone();
       zoneEl.textContent = zone.title + " " + zone.emoji;
-      tipEl.textContent = zone.tip;
-      updateTeeth(zone);
+      instructionEl.textContent = zone.text;
 
-      if (running && zone.title !== lastSpokenZone) {
-        lastSpokenZone = zone.title;
+      updateVisual(zone);
+
+      if (running && zone.id !== lastSpokenId) {
+        lastSpokenId = zone.id;
         speak(zone.say);
       }
     }
@@ -569,27 +820,18 @@
       running = true;
       celebrateEl.style.display = "none";
 
-      const currentZone = getCurrentZone();
-      lastSpokenZone = currentZone.title;
-      speak("Brush teeth time. " + currentZone.say);
+      const zone = getCurrentZone();
+      lastSpokenId = zone.id;
+      speak("Brush teeth time. " + zone.say);
 
       updateDisplay();
 
       interval = setInterval(() => {
         timeLeft--;
         updateDisplay();
+        regularGuidance();
 
-        if (timeLeft === 60) {
-          speak("One minute done. Keep brushing. You are doing great!");
-        }
-
-        if (timeLeft === 30) {
-          speak("Only thirty seconds left. Make those teeth sparkle!");
-        }
-
-        if (timeLeft <= 0) {
-          finishTimer();
-        }
+        if (timeLeft <= 0) finishTimer();
       }, 1000);
     }
 
@@ -603,20 +845,21 @@
       running = false;
       clearInterval(interval);
       timeLeft = totalTime;
-      lastSpokenZone = "";
+      lastSpokenId = "";
+      lastEncouragement = -1;
       celebrateEl.style.display = "none";
+
+      resetHighlights();
+      mouthVisualEl.classList.remove("hide");
+      insideVisualEl.classList.remove("show");
       chewingVisualEl.classList.remove("show");
 
-      teeth.forEach(tooth => tooth.classList.remove("active", "done", "chewing-active"));
-
       zoneEl.textContent = "Press Start to begin!";
-      tipEl.textContent = "Use small circles. Be gentle. Do not rush!";
+      instructionEl.textContent = "Use small circles. Be gentle. Do not rush!";
       progressEl.style.width = "0%";
       timerEl.textContent = "02:00";
 
-      if ("speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
+      if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     }
 
     function finishTimer() {
@@ -626,16 +869,17 @@
 
       progressEl.style.width = "100%";
       zoneEl.textContent = "All done! Big smile! 😁";
-      tipEl.textContent = "Spit, rinse your brush, and smile bright!";
+      instructionEl.textContent = "Spit, rinse your brush, and smile bright!";
       celebrateEl.style.display = "block";
+
+      resetHighlights();
+      mouthVisualEl.classList.remove("hide");
+      insideVisualEl.classList.remove("show");
       chewingVisualEl.classList.remove("show");
 
-      teeth.forEach(tooth => {
-        tooth.classList.remove("active", "chewing-active");
-        tooth.classList.add("done");
-      });
+      teeth.forEach(t => t.classList.add("done"));
 
-      speak("All done. Great brushing. Your teeth are clean and shiny!");
+      speak("All done. Great brushing. Your teeth are clean and shiny.");
     }
 
     updateDisplay();
